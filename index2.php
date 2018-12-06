@@ -1,6 +1,7 @@
 <?php
 require "public/templates/header.php";
 
+/*kasjdkasjda*/
 try {
 
     require "config.php";
