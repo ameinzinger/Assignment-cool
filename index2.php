@@ -1,7 +1,7 @@
 <?php
 require "public/templates/header.php";
 
-/*kasjdkasjda*/
+
 try {
 
     require "config.php";
@@ -26,6 +26,7 @@ try {
 
 
 <h2>Results</h2>
+<h2>Results</h2> /* chnaged this*/
 
 <table>
     <thead>
