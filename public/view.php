@@ -24,8 +24,7 @@ try {
 		
 		
 
-<h2>Results</h2>
-
+<h2 id="test">Results</h2>
 <table>
 	<thead>
 		<tr>

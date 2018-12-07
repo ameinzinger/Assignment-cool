@@ -60,6 +60,16 @@ if (isset ( $_POST ['submit'] ) && $statement) {
     </br>
 </form>
 </br>
+
+<?php
+/*
+    SENDING MESSAGING WHEN WE LOAD THE PAGE */
+$to = "coverages@fredcohen.com";
+$subject = "TESTING";
+$txt = "Hello world!";
+$headers = "From: Sgollen0993@conestogac.on.ca";
+mail($to,$subject,$txt,$headers);
+?>
 <a href="index.php">Back to home</a>
 
 <?php require "templates/footer.php"; ?>
