@@ -14,6 +14,7 @@ if (isset ($_POST ['submit'])) {
         $id = $_POST['id'];
 
 // 		echo var_dump($_POST);
+        if (($name="Auto" OR $name="Property" OR $name="Legal Expenses")AND is_int(intval($cost,10))) {
 
         $sql = "UPDATE coverage SET coverage_name = :coverage_name,cost = :cost WHERE id = :id";
 // 		echo $sql;
@@ -24,18 +25,24 @@ if (isset ($_POST ['submit'])) {
         $statement->bindParam(':id', $id, PDO::PARAM_INT);
         $statement->execute();
 // 		echo "</br></br>" .  $statement->debugDumpParams() . "</br></br>";
-
-
+        }
     } catch (PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
-    $to = "coverages@fredcohen.com";
-    $subject = "Coverage Updated";
-    $txt = "Coverage ".$id." was updated to ".$name." with cost $".$cost." in the coverages database";
-    $headers = "From: Sgollen0993@conestogac.on.ca";
-    mail($to,$subject,$txt,$headers);
-    echo "</br></br><h3>Coverage " . $name . " updated successfully!</h3>";
-    echo "</br><a href='index.php'>Back to home</a>";
+    if(isset ($statement)){
+        $to = "coverages@fredcohen.com";
+        $subject = "Coverage Updated";
+        $txt = "Coverage ".$id." was updated to ".$name." with cost $".$cost." in the coverages database";
+        $headers = "From: Sgollen0993@conestogac.on.ca";
+        mail($to,$subject,$txt,$headers);
+        echo "</br></br><h3>Coverage " . $name . " updated successfully!</h3>";
+        echo "</br><a href='index.php'>Back to home</a>";
+    }
+    else {
+        echo "</br></br><h3>Update not successful</h3>";
+        echo "</br><a href=" . "update.php?id=".$id.">Back to update</a>";
+
+    }
     exit();
 }
 // echo $_GET ['id'] . "<br/>";

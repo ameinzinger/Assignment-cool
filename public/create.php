@@ -25,22 +25,27 @@ if (isset($_POST['submit']))
 		$name = $_POST['coverage_name'];
         $cost = $_POST ['cost'];
 
-		$statement = $connection->prepare($sql);
-		$statement->bindParam(':coverage_name', $name, PDO::PARAM_STR);
-        $statement->bindParam(':cost', $cost, PDO::PARAM_STR);
-		$statement->execute();
+        if (($name="Auto" OR $name="Property" OR $name="Legal Expenses")AND is_int(intval($cost,10))) {
+            $statement = $connection->prepare($sql);
+            $statement->bindParam(':coverage_name', $name, PDO::PARAM_STR);
+            $statement->bindParam(':cost', $cost, PDO::PARAM_STR);
+            $statement->execute();
+
 
 		$result = $statement->fetchAll();
 
 		if(!$result) {
-            $sql = "INSERT INTO coverage (coverage_name, cost) VALUES (:coverage_name,:cost)";
+
+                $sql = "INSERT INTO coverage (coverage_name, cost) VALUES (:coverage_name,:cost)";
 // 		echo "<h3>SQL:" . $sql . "</h3>";
-            $statement = $connection->prepare($sql);
-            $statement->bindParam(':coverage_name', $name);
-            $statement->bindParam(':cost', $cost);
-            // $statement->execute ( $new_user );
-            $statement->execute();
+                $statement = $connection->prepare($sql);
+                $statement->bindParam(':coverage_name', $name);
+                $statement->bindParam(':cost', $cost);
+                // $statement->execute ( $new_user );
+                $statement->execute();
+            }
         }
+        else $result = false;
 	}
 	
 	catch(PDOException $error) 
@@ -67,10 +72,8 @@ if (isset($_POST['submit']))
         <blockquote><?php echo $_POST['coverage_name']; ?> successfully added.</blockquote>
         <?php
     }
-	else 
-	{ ?>
-		<blockquote>No results found for <?php echo escape($_POST['coverage_name']); ?>.</blockquote>
-	<?php
+	else {
+        echo "</br></br><h3>Create not successful</h3>";
 	} 
 }?> 
 

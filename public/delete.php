@@ -1,5 +1,5 @@
 <?php
-
+require "templates/header.php";
 if (isset ( $_GET ['id'] )) {
 	
 	try {
@@ -21,14 +21,14 @@ if (isset ( $_GET ['id'] )) {
 	} catch ( PDOException $error ) {
 		echo $sql . "<br>" . $error->getMessage ();
 	}
-
+if (isset($statement)) {
     $to = "coverages@fredcohen.com";
     $subject = "Coverage Deleted";
-    $txt = "Coverage ".$id." was deleted from the coverages database";
+    $txt = "Coverage " . $id . " was deleted from the coverages database";
     $headers = "From: Sgollen0993@conestogac.on.ca";
-    mail($to,$subject,$txt,$headers);
-	echo "<br>Coverage Successfully Deleted!<br>";
-	
+    mail($to, $subject, $txt, $headers);
+    echo "<br>Coverage Successfully Deleted!<br>";
+}
 	
 }
 ?>
