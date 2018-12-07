@@ -22,16 +22,15 @@ try {
 ?>
 
 
-
-
-    <h2>Results</h2>
-    <a href="create.php">Create New Coverage</a>
-    <table>
+     <p id="customAdd">Add Coverage: <a href="create.php">Create New Coverage</a></p>
+    <h2 id="customTitle">Current Coverages</h2>
+    <table id="customers" class=".table-striped">
         <thead>
         <tr>
             <th>#</th>
             <th>Coverage Name</th>
             <th>Cost</th>
+            <th colspan="2">Modify Coverage Records</th>
         </tr>
         </thead>
         <tbody>
