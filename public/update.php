@@ -29,6 +29,11 @@ if (isset ($_POST ['submit'])) {
     } catch (PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
+    $to = "coverages@fredcohen.com";
+    $subject = "Coverage Updated";
+    $txt = "Coverage ".$id." was updated to ".$name." with cost $".$cost." in the coverages database";
+    $headers = "From: Sgollen0993@conestogac.on.ca";
+    mail($to,$subject,$txt,$headers);
     echo "</br></br><h3>Coverage " . $name . " updated successfully!</h3>";
     echo "</br><a href='index.php'>Back to home</a>";
     exit();
