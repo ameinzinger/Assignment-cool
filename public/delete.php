@@ -21,7 +21,12 @@ if (isset ( $_GET ['id'] )) {
 	} catch ( PDOException $error ) {
 		echo $sql . "<br>" . $error->getMessage ();
 	}
-	
+
+    $to = "coverages@fredcohen.com";
+    $subject = "Coverage Deleted";
+    $txt = "Coverage ".$id." was deleted from the coverages database";
+    $headers = "From: Sgollen0993@conestogac.on.ca";
+    mail($to,$subject,$txt,$headers);
 	echo "<br>Coverage Successfully Deleted!<br>";
 	
 	
