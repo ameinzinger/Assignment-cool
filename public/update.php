@@ -13,23 +13,58 @@ if (isset ($_POST ['submit'])) {
         $cost = $_POST ['cost'];
         $id = $_POST['id'];
 
-// 		echo var_dump($_POST);
+        $sql = "SELECT * 
+						FROM coverage
+						WHERE coverage_name = :coverage_name AND cost = :cost";
 
-        $sql = "UPDATE coverage SET coverage_name = :coverage_name,cost = :cost WHERE id = :id";
-// 		echo $sql;
 
-        $statement = $connection->prepare($sql);
-        $statement->bindParam(':coverage_name', $name, PDO::PARAM_STR);
-        $statement->bindParam(':cost', $cost, PDO::PARAM_STR);
-        $statement->bindParam(':id', $id, PDO::PARAM_INT);
-        $statement->execute();
+
+        if(($name=="Auto" OR $name=="Property" OR $name=="Legal Expenses") AND is_int(intval($cost,10))) {
+            $statement = $connection->prepare($sql);
+            $statement->bindParam(':coverage_name', $name, PDO::PARAM_STR);
+            $statement->bindParam(':cost', $cost, PDO::PARAM_STR);
+            $statement->execute();
+
+            $result = $statement->fetchAll();
+
+            if (!$result) {
+
+                $sql = "UPDATE coverage SET coverage_name = :coverage_name,cost = :cost WHERE id = :id";
+
+                $statement = $connection->prepare($sql);
+                $statement->bindParam(':coverage_name', $name, PDO::PARAM_STR);
+                $statement->bindParam(':cost', $cost, PDO::PARAM_STR);
+                $statement->bindParam(':id', $id, PDO::PARAM_INT);
+                $statement->execute();
 // 		echo "</br></br>" .  $statement->debugDumpParams() . "</br></br>";
-
+            }
+        }
+        else $result = false;
 
     } catch (PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
-    if(isset ($statement)){
+    if($result){
+        ?> <blockquote><?php echo $_POST['coverage_name']." ".$_POST['cost'];?> already exists.</blockquote>
+        <div id="customBox">
+        <form method="post">
+            <label for="coverage_name">Coverage Name</label>
+            <select name="coverage_name" id="coverage_name">
+                <option value="Auto" <?php  if($name=="Auto"){ echo "selected";}; ?>>Auto</option>
+                <option value="Property" <?php  if($name=="Property"){ echo "selected";}; ?>>Property</option>
+                <option value="Legal Expenses" <?php  if($name=="Legal Expenses"){ echo "selected";}; ?>>Legal Expense</option>
+            </select>
+            <label for="cost">Cost</label>
+            <input type="number" name="cost" id="cost" value="<?php echo escape(intval($cost),10); ?>">
+            </br></br>
+            <input type="hidden" name="id" id="id" value="<?php echo escape($id); ?>">
+            <input type="submit" name="submit" value="Update">
+            </br>
+            </form>
+            </div>
+    <?php
+    }
+    else if(isset ($statement)){
         $to = "coverages@fredcohen.com";
         $subject = "Coverage Updated";
         $txt = "Coverage ".$id." was updated to ".$name." with cost $".$cost." in the coverages database";
@@ -47,7 +82,7 @@ if (isset ($_POST ['submit'])) {
 }
 // echo $_GET ['id'] . "<br/>";
 if (isset ($_GET ['id'])) {
-
+// Selects record for updating
     try {
 
         require "../config.php";

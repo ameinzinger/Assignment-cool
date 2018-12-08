@@ -27,7 +27,10 @@ if (isset ( $_GET ['id'] )) {
     $txt = "Coverage ".$id." was deleted from the coverages database";
     $headers = "From: Sgollen0993@conestogac.on.ca";
     mail($to,$subject,$txt,$headers);
-	echo "<br>Coverage Successfully Deleted!<br>";
+
+	echo '<script type="text/javascript">
+        window.location.href="index.php";
+        </script>';
 	
 	
 }
