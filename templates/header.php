@@ -16,7 +16,7 @@
     <div class="container branding">
         <div>
                 <div class="col-sm-12">
-                    <h1>The Fred Cohen Company</h1>
+                    <h1><a href="index.php">The Fred Cohen Company</a></h1>
                     <p><i>&ldquo; Leading through perspiration &rdquo;</i></p>
                 </div>
         </div>
