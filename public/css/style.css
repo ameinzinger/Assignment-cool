@@ -1,8 +1,12 @@
 label {
+    font-family: 'Roboto', sans-serif;
 	display: block;
 	margin: 5px 0;
 }
 
+body {
+    font-family: 'Roboto'
+}
 
 #customers {
   font-family: 'Roboto', sans-serif;
@@ -51,5 +55,60 @@ label {
     margin-left: 9em;
     font-size: 16px;
     color: Black;
+    font-weight: 500;
+}
+
+
+
+/*styles for Create, Update and  Delete Pages */
+
+input[type=text], input[type=number], select {
+  font-family: 'Roboto', sans-serif;
+  width: 50%;
+  padding: 12px 20px;
+  margin-left: 3em;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  font-family: 'Roboto', sans-serif;
+  width: 50%;
+  background-color: #1B65D8;
+  color: white;
+  padding: 14px 20px;
+  margin-left: 3em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #3F65D8;
+}
+
+#customBox {
+  width: 60%;
+  margin-left: 18.3em;
+  margin-top: 4em;
+  margin-bottom: 2em;
+  border-radius: 15px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+#customTitleCreate {
+     margin-left: 10.5em;
+     margin-bottom: 1em;
+     font-size: 24px;
+     color: Black;
+    font-weight: 400;
+}
+
+#customBack  {
+    margin-left: 16em;
+    font-size: 16px;
     font-weight: 500;
 }

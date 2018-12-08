@@ -14,7 +14,6 @@ if (isset ($_POST ['submit'])) {
         $id = $_POST['id'];
 
 // 		echo var_dump($_POST);
-        if (($name="Auto" OR $name="Property" OR $name="Legal Expenses")AND is_int(intval($cost,10))) {
 
         $sql = "UPDATE coverage SET coverage_name = :coverage_name,cost = :cost WHERE id = :id";
 // 		echo $sql;
@@ -25,7 +24,8 @@ if (isset ($_POST ['submit'])) {
         $statement->bindParam(':id', $id, PDO::PARAM_INT);
         $statement->execute();
 // 		echo "</br></br>" .  $statement->debugDumpParams() . "</br></br>";
-        }
+
+
     } catch (PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
@@ -76,7 +76,7 @@ if (isset ($_GET ['id'])) {
 // if (isset ( $_POST ['submit'] )) {
 if ($result) {
     ?>
-
+<div id="customBox">
     <form method="post">
     <?php
     foreach ($result as $row) {
@@ -94,6 +94,7 @@ if ($result) {
         <input type="submit" name="submit" value="Update">
         </br>
         </form>
+</div>
         <?php
     }
     ?>
@@ -107,6 +108,6 @@ if ($result) {
 ?>
     </br>
 
-    <a href="index.php">Back to home</a>
+   <a id="customBack"  href="index.php">&larr; Back to home</a>
 
 <?php require "templates/footer.php"; ?>

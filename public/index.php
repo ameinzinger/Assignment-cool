@@ -24,6 +24,7 @@ try {
 
      <p id="customAdd">Add Coverage: <a href="create.php">Create New Coverage</a></p>
     <h2 id="customTitle">Current Coverages</h2>
+   <div class="table-responsive">
     <table id="customers" class=".table-striped">
         <thead>
         <tr>
@@ -50,6 +51,7 @@ try {
         ?>
         </tbody>
     </table>
+</div>
 <?php
 // }
 
