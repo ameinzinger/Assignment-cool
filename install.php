@@ -5,7 +5,7 @@
  * new database and table with structure.
  *
  */
-
+require "templates/header.php";
 require "config.php";
 
 try 
@@ -16,12 +16,14 @@ try
 	$sql = file_get_contents("sql/init-sqlite.sql");
 	$connection->exec($sql);
 	
-	echo "Database and table users created successfully.";
+	echo "<p>Database and table users created successfully.</p>";
+	echo '<br><a id="customBack" href="index.php">&larr; Back to home</a>';
 	
 }
 
 catch(PDOException $error)
 {
 	echo $sql . "<br>" . $error->getMessage();
+    echo '<br><a id="customBack" href="index.php">&larr; Back to home</a>';
 }
 
