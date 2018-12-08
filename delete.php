@@ -1,4 +1,5 @@
 <?php
+require "templates/header.php";
 
 if (isset ( $_GET ['id'] )) {
 	
@@ -28,12 +29,13 @@ if (isset ( $_GET ['id'] )) {
     $headers = "From: Sgollen0993@conestogac.on.ca";
     mail($to,$subject,$txt,$headers);
 
-	echo '<script type="text/javascript">
-        window.location.href="index.php";
+	echo '<blockquote>Record deleted.</blockquote>
+<script type="text/javascript">
+    setTimeout(function () {
+    window.location.href = "index.php"; //will redirect to your blog page (an ex: blog.html)
+        }, 1000);
         </script>';
 	
 	
 }
 ?>
-<br>
-<a href="index.php">Back to home</a>

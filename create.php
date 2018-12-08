@@ -25,7 +25,7 @@ if (isset($_POST['submit']))
 		$name = $_POST['coverage_name'];
         $cost = $_POST ['cost'];
 
-        if(($name=="Auto" OR $name=="Property" OR $name=="Legal Expenses") AND is_int(intval($cost,10))) {
+        if(($name=="Auto" OR $name=="Property" OR $name=="Legal Expenses") AND $cost==intval($cost)AND strlen($cost)==strlen(intval($cost))) {
             $statement = $connection->prepare($sql);
             $statement->bindParam(':coverage_name', $name, PDO::PARAM_STR);
             $statement->bindParam(':cost', $cost, PDO::PARAM_STR);

@@ -12,5 +12,5 @@
 
 // $baseDSN = "mysql:host=$host";
 // $dsn = "mysql:host=$host;dbname=$dbname";
-$dsn = "sqlite:C:\\PROG8020\\xampp\\htdocs\\Assignment 2\\db\\coverage.db";
+$dsn = "sqlite:db\\coverage.db";
 
