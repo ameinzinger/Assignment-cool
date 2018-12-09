@@ -1,29 +1,35 @@
 <?php
-require "templates/header.php";
 
-try {
+/**
+ * Function to query information based on 
+ * a parameter: in this case, location.
+ *
+ */
 
-    require "config.php";
-    require "common.php";
+	try 
+	{
+		
+		require "config.php";
+		require "common.php";
+        $q = $_GET['q'];
+// 		$connection = new PDO($dsn, $username, $password, $options);
+		$connection = new PDO ( $dsn );
+		$sql = "SELECT * 
+						FROM coverage
+						WHERE coverage_name = :coverage_name";
 
-    // $connection = new PDO ( $dsn, $username, $password, $options );
-    $connection = new PDO ( $dsn );
 
-    $sql = "SELECT * FROM coverage";
-
-    $statement = $connection->prepare ( $sql );
-    $statement->execute ();
-
-    $result = $statement->fetchAll (PDO::FETCH_ASSOC);
-} catch ( PDOException $error ) {
-    echo $sql . "<br>" . $error->getMessage ();
-}
-
+		$statement = $connection->prepare($sql);
+		$statement->bindParam(':coverage_name', $q, PDO::PARAM_STR);
+		$statement->execute();
+		$result = $statement->fetchAll();
+	}	
+	catch(PDOException $error) 
+	{
+		echo $sql . "<br>" . $error->getMessage();
+	}
 ?>
 
-
-     <p id="customAdd">Add Coverage: <a href="create.php">Create New Coverage</a></p>
-    <h2 id="customTitle">Current Coverages</h2>
    <div class="table-responsive">
     <table id="customers" class=".table-striped">
         <thead>
@@ -51,15 +57,9 @@ try {
         ?>
         </tbody>
     </table>
-       <p id="customInstall">Install Database(For Testing): <a href="install.php">New Database</a></p>
-       <p id="customInstall">Search Database(Ajax): <a  href="ajaxsearch.php">Search Coverage By Cost</a></p>
 </div>
-<?php
-// }
-
-?>
 
 
-
+<a id="customBack1" href="index.php">&larr; Back to home</a>
 
 <?php require "templates/footer.php"; ?>
