@@ -52,7 +52,7 @@ try {
         </tbody>
     </table>
        <p id="customInstall">Install Database(For Testing): <a href="install.php">New Database</a></p>
-       <p id="customInstall">Search Database(Ajax): <a  href="ajaxsearch.php">Search Coverage By Cost</a></p>
+       <p id="customInstall">Search Database(Ajax): <a  href="ajaxsearch.php">Search Coverage By Name</a></p>
 </div>
 <?php
 // }

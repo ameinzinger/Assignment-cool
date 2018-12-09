@@ -3,7 +3,7 @@
 require "templates/header.php"; 
 ?>
 
-<h2 id="customTitleCreate">Find Coverage Based on Cost</h2>
+<h2 id="customTitleCreate">Find Coverage Based on Name</h2>
 
 <div id="customBox">
     <form>

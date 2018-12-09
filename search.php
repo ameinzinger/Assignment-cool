@@ -2,7 +2,7 @@
 
 /**
  * Function to query information based on 
- * a parameter: in this case, Coverage name.
+ * a parameter: in this case, coverage name.
  *
  */
 
